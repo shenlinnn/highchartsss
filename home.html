@@ -8,18 +8,23 @@
    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
    <script src="https://code.highcharts.com/modules/data.js"></script>
 </head>
+<br>
+<div class="contain">
+	<div class='col-md-1'></div>
+	<div class="col-md-1">
+		<select id="series">
+			<option value="0"> Top 5 the most ordered dishes </option>
+			<option value="1"> Top 5 the most shared dishes </option>
+		</select> 
+	</div>
 
-<select id="series">
-    <option value="0"> Top 5 the most ordered dishes </option>
-    <option value="1"> Top 5 the most shared dishes </option>
-</select> 
-
-
-<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+	<div class='col-md-12'>
+		<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+	</div>
+</div>
 
 <script language="JavaScript">
 	$(document).ready(function() {
-
         var chart = new Highcharts.Chart({
         	chart: {
         		renderTo: 'container',
@@ -40,12 +45,15 @@
 	            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
 	        },
 	        xAxis: {
+	        	title: {
+	        		text: 'Dishes'
+	        	},
 				categories: ['Spaghetti Bolognalse','Grilled Chicken','French Fries','Potato Salad','Chicken Cutlet']
 			},
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'quantity'
+					text: 'Average Daily Ordered Quantity'
 				},
 				allowDecimals: false
 			},
@@ -63,13 +71,13 @@
 					y: 24
 				}, {
 					name: 'French Fries',
-					y: 20
+					y: 18
 				}, {
 					name: 'Potato Salad',
-					y: 19
+					y: 12
 				}, {
 					name: 'Chicken Cutlet',
-					y: 14
+					y: 8
 				}]
 			}]
         });
@@ -80,7 +88,7 @@
 	            chart.series[0].remove(true);
 	        };
 	        if (value == 0) {
-	        	chart.yAxis[0].setTitle({text: 'quantity'});
+	        	chart.yAxis[0].setTitle({text: 'Average Daily Ordered Quantity'});
 	        	chart.setTitle({text: "Top 5 The Most Ordered Dishes"});
 	        	chart.addSeries({
 	        		name: 'Top 5 The Most Ordered Dishes',
@@ -93,18 +101,19 @@
 						y: 24
 					}, {
 						name: 'French Fries',
-						y: 20
+						y: 18
 					}, {
 						name: 'Potato Salad',
-						y: 19
+						y: 12
 					}, {
 						name: 'Chicken Cutlet',
-						y: 14
+						y: 8
 					}]
 	        	});
 	        	chart.xAxis[0].setCategories(['Spaghetti Bolognalse','Grilled Chicken','French Fries','Potato Salad','Chicken Cutlet']);
+	        	chart.xAxis[0].setTitle({text:'Dishes'});
 	        } else {
-	        	chart.yAxis[0].setTitle({text: 'quantity'});
+	        	chart.yAxis[0].setTitle({text: 'Average Daily Shared Quantity'});
 	        	chart.setTitle({text: "Top 5 The Most Shared Dishes"});
 	        	chart.addSeries({
 	        		name: 'Top 5 The Most Shared Dishes',
@@ -114,10 +123,10 @@
 						y: 15
 					}, {
 						name: 'Potato Salad',
-						y: 14
+						y: 10
 					}, {
 						name: 'Spring Roll',
-						y: 10
+						y: 9
 					}, {
 						name: 'Mushroom Soup',
 						y: 7
@@ -128,6 +137,7 @@
 
 	        	});
 	        	chart.xAxis[0].setCategories(['French Fries','Potato Salad','Spring Roll','Mushroom Soup','Chicken Cutlet']);
+	        	chart.xAxis[0].setTitle({text:'Dishes'});
 	        }
         })
 
